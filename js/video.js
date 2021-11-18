@@ -41,12 +41,10 @@ document.querySelector('#skip').addEventListener("click", function(){
 		
 document.querySelector("#mute").addEventListener("click", function() {
 		console.log("Mute Video");
-		
 			if(video.muted){
 				document.querySelector('video').muted = false;
 				document.getElementById("mute").innerHTML="Mute"
 			}
-		
 			else{
 				document.querySelector('video').muted=true;
 				document.getElementById("mute").innerHTML="Unmute"
@@ -66,3 +64,16 @@ document.querySelector("#vintage").addEventListener("click", function() {
 document.querySelector("#orig").addEventListener("click", function() {
 	video.classList.remove('oldSchool')
 		});
+
+$(document).ready(function(){
+	$("video").on(
+		"timeupdate", 
+		function(event){
+			onTrackedVideoFrame(this.currentTime, this.duration);
+			  });
+		  });
+		  
+		function onTrackedVideoFrame(currentTime, duration){
+			$("#current").text(currentTime);
+			 $("#duration").text(duration)
+		  }
